@@ -1,5 +1,5 @@
 <details>
-<summary>특징</summary>
+<summary>1. 특징</summary>
 <div markdown="1">
 
 ## 1. 특징
@@ -11,7 +11,7 @@
 </details>
 
 <details>
-<summary>변수와 상수</summary>
+<summary>2. 변수와 상수</summary>
 <div markdown="1">
   
 ## 2. 변수와 상수
@@ -24,7 +24,7 @@
 </details>
 
 <details>
-<summary>타입</summary>
+<summary>3. 타입</summary>
 <div markdown="1">
   
 ## 3. 타입
@@ -66,7 +66,7 @@ Object(3); // new Number(3)과 동일 숫자 3
 </details>
 
 <details>
-<summary>연산자</summary>
+<summary>4. 연산자</summary>
 <div markdown="1">
 
 ## 4. 연산자
@@ -118,7 +118,7 @@ x = (a !== null && a !== undefined) ? a : b;
 </details>
 
 <details>
-<summary>함수</summary>
+<summary>5. 함수</summary>
 <div markdown="1">
 
 ## 5. 함수
@@ -166,7 +166,7 @@ async ()=>{
 </details>
 
 <details>
-<summary>맵, 셋</summary>
+<summary>6. 맵, 셋</summary>
 <div markdown="1">
 
 ## 6. 맵, 셋
@@ -280,7 +280,7 @@ set.forEach((value, valueAgain, set) => {
 </details>
 
 <details>
-<summary>구조 분해 할당</summary>
+<summary>7. 구조 분해 할당</summary>
 <div markdown="1">
 
 ## 7. 구조 분해 할당
@@ -347,7 +347,7 @@ alert(item2); // Donut
 </details>
 
 <details>
-<summary>Date 객체와 날짜</summary>
+<summary>8. Date 객체와 날짜</summary>
 <div markdown="1">
 
 ## 8. Date 객체와 날짜
@@ -384,7 +384,7 @@ alert(today); // 시, 분, 초 변경
 </details>
 
 <details>
-<summary>async, await</summary>
+<summary>9. async, await</summary>
 <div markdown="1">
 
 ### 9. async, await

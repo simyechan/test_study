@@ -481,10 +481,249 @@ class Cat implements Cat { // Error - TS2420: Class 'Cat' incorrectly implements
 </details>
 
 <details>
-<summary>7. 인터페이스</summary>
+<summary>8. 타입 별칭</summary>
 <div markdown="1">
 
+## 8. 타입 별칭
 
+- type 키워드를 사용해  새로운 타입 조합을 만들 수 있음
+
+```tsx
+type Str = string;
+type SNum = string | number;
+
+let name: Str = "Kim";
+let num: SNum = "a1"
+num = 1
+```
+
+</div>
+</details>
+
+<details>
+<summary>9. 제네릭</summary>
+<div markdown="1">
+
+## 9. 제네릭
+
+- 사용 시점에 타입을 선언
+
+```tsx
+function toArray<T>(a: T, b:T): T[] {
+	return [a, b]
+}
+
+toArray<number>(1, 2)
+toArray<string>('1', '2')
+toArray<string | number>(1, '2')
+```
+
+- 조건부 타입
+
+```tsx
+type U = string | number | boolean
+
+// type 식별자 = 타입 구현
+type MyType<T> = T extends U ? string : never
+
+// interface 식별자 { 타입 구현 }
+interface User<T> {
+	name: string
+	age: T extends U ? number : never
+}
+```
+
+</div>
+</details>
+
+<details>
+<summary>10. this</summary>
+<div markdown="1">
+
+## 10. this
+
+```tsx
+const obj = {
+	a: 'Hi',
+	b: function () {
+		console.log(this.a) // obj.a
+		
+		function b() {
+			console.log(this.a) // global.a
+		}
+	}
+}
+```
+
+- bind 메소드
+    - this를 직접 연결해 주는 방법
+
+```tsx
+obj.b() // Hi
+
+const b = obj.b.bind(obj)
+b() // Hi
+
+function f(cb: any) {
+	cb()
+}
+f(obj.b.bind(obj)) // Hi
+
+setTimeout(obj.b.bind(obj), 100) // Hi
+```
+
+- 화살표 합수
+    - 콘텍스트를 유지하며 메소드 호출
+
+```tsx
+obj.b() // Hi
+
+const b = () => obj.b()
+b() // Hi
+
+function f(cb: any) {
+	cb()
+}
+
+f(() => obj.b()) // Hi
+
+setTimeout(() => obj.b(), 100) // Hi
+```
+
+- 명시적 this
+
+```tsx
+interface Cat {
+	name: string
+}
+
+const cat: Cat = {
+	name: 'Kim'
+}
+
+function f(this: Cat, greeting: string) {
+	console.log(`${greeting} ${this.name}`) // ok
+}
+f.call(cat, 'Hi') // Hi Kim
+```
+
+- 오버로드
+
+```tsx
+function add(a: string, b: string): string
+function add(a: number, b: number): number
+function add(a: any, b: any): any {
+	return a + b
+}
+
+add('hello ', 'world')
+add(1, 2)
+add('hello ', 2)
+```
+
+</div>
+</details>
+
+<details>
+<summary>11. 클래스</summary>
+<div markdown="1">
+
+## 11. 클래스
+
+```tsx
+class Animal {
+  public name: string
+  constructor(name: string) {
+    this.name = name
+  }
+}
+class Cat extends Animal {
+  getName(): string {
+    return `Cat name is ${this.name}.`
+  }
+}
+let cat = new Cat('Lucy')
+console.log(cat.getName()) // Cat name is Lucy.
+
+cat.name = 'Tiger'
+console.log(cat.getName()) // Cat name is Tiger.
+```
+
+- 추상 클래스
+
+```tsx
+abstract class Animal {
+  abstract name: string
+  abstract getName(): string
+
+  protected constructor(public legs: string) {}
+  getLegs() {
+    return this.legs
+  }
+}
+```
+
+</div>
+</details>
+
+<details>
+<summary>12. Optional</summary>
+<div markdown="1">
+
+## 12. Optional
+
+- 매개 변수
+
+```tsx
+function add(x: number, y?: number): number {
+	return x + (y || 0)
+}
+const sum = add(2)
+console.log(sum)
+```
+
+- 속성, 매소드
+
+```tsx
+interface User {
+	name: string
+	age: number
+	isAdult?: boolean
+}
+
+let user: User = {
+	name: 'Kim',
+	age: 123
+}
+```
+
+</div>
+</details>
+
+<details>
+<summary>13. 모듈</summary>
+<div markdown="1">
+
+## 13. 모듈
+
+```tsx
+// 내보내기
+// myType.ts
+export interface User {
+	name: string
+	age: number
+}
+
+export type MyType = string | number
+
+// 가져오기
+import type { User, MyType } from './myType'
+
+const user: User = {
+	name: 'Kim'
+	age: 12
+}
+```
 
 </div>
 </details>
